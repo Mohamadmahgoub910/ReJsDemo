@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FeedBackItem from "./FeedBackItem";
+
+
 function Header({ text, bgColor, textColor }) {
   const HeaderStyle = {
     backgroundColor: bgColor,
@@ -14,7 +15,6 @@ function Header({ text, bgColor, textColor }) {
           <p>FeedBack</p>
         </div>
       </header>
-      <FeedBackItem />
     </>
   );
 }

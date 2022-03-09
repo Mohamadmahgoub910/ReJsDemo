@@ -1,30 +1,35 @@
-import React, { StrictMode } from 'react'
-import Header from './components/Header'
+import React, { useState } from "react";
+import Header from "./components/Header";
+import { v4 as uuid } from "uuid";
+import "./index.css";
 
-
+import FeedbackData from "./data/FeedbackData";
+import FeedBackList from "./components/FeedBackList";
+import State from "./components/State";
+import FeedbackForm from "./components/FeedbackForm";
 
 function App() {
-  const Title = 'Blog Post'
-  const Body = 'This is my blog post'
-  const Comments = [
-    { id: 1, text: 'Comment 1' },
-    { id: 2, text: 'Comment 2' },
-    { id: 3, text: 'Comment 3' }
-  ]
-  // const loading = false
-  const showComment = true
-  const commentBlock = (<ul>
-    {Comments.map((comment, index) => (
-      <li key={index} >{comment.text} </li>
-    ))}
-  </ul>)
+  const [feedback, setFeedBack] = useState(FeedbackData);
+  const deleteFeedback = (id) => {
+    if (window.confirm("Are you sure delete this?")) {
+      setFeedBack(feedback.filter((item) => item.id !== id));
+    }
+  };
+  const addFeedback = (newFeedback) => {
+    newFeedback.id = uuid();
+    // setFeedBack([newFeedback, ...feedback]);
+    console.log(newFeedback);
+  };
   return (
-    <StrictMode>
-      <>
-        <Header />
-      </>
-    </StrictMode>
-  )
+    <>
+      <Header />
+      <div className="container">
+        <FeedbackForm addAnewFeedback={addFeedback} />
+        <State feedback={feedback} />
+        <FeedBackList feedback={feedback} handleDelete={deleteFeedback} />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
