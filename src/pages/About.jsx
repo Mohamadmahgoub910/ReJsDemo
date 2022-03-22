@@ -1,7 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Card from '../shared/Card'
 function About() {
     return (
-        <div>About</div>
+        <>
+            <Card>
+                <h5>About page </h5>
+                <Link to='/'>Back</Link>
+            </Card>
+        </>
     )
 }
 
